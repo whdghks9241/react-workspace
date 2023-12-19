@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function R003_ImportComponent {
+function R003_ImportComponent() {
     return (
         <div>
             <h2>[THIS IS IMPORTED COMPONENT]</h2>

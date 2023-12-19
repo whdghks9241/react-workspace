@@ -1,57 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
 
-import React, {useState} from 'react';
-/*
-  useState : 상태를 관리하기 위해 사용되는 코드
-  사용법 : 배열형식으로 사용을 하며, 첫번째 배열은 현재 상태값 두번째 배열은 상태 업데이트 하는 값 을 작성한다.
+/* 
+  BrowserRouter : html 라우팅 처리하는데 사용
+  
+  라우팅 : 다른 페이지간의 전환이나 네이게이션 관리하는 것을 나타냄
+  
+  렌더링 : 컴퓨터 프로그램에서 데이터나 그래픽을 화면에 나타내는 과정
+  
+  Route : URL 경로에 따라 특정 컴포넌트(function)을 렌더링(화면에 나타내는과정) 하는데 사용
+  
+  Routes : 여러개 Route를 그룹으로 만들고 관리하는데 사용
+
+  Link : 클릭 가능한 링크를 생성하는데 사용
 */
 
-function App() {
-  return (
-    <div>
-    <Counter />
-  </div>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-  );
-}
-
-// const [count, setCount]  = useState(0);
-function Counter() {
-  // 자바스크립트 코드 작성하는 공간
-  // [초기값, 변경될 값] = 초기값 설정해주는 공간
-  const [count, setCount] = useState(0);
-
-  const increament = () => {
-    setCount(count + 1)
-  }
-
-  return( // html 테그 코드는 return 안에 작성해 줌
-    <div>
-      <h1>Count:{count}</h1>
-      <button onClick={increament}>증가시키는 버튼</button>
-    </div>
-    // 순수 자바스크립트에서는 onclick C를 소문자로 작성했지만
-    // 리액트자바스크립트 에서는 onClick C를 대문자로 활용하는 카멜케이스를 사용함
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Blog from './js/Blog';
+const About = () => <div>소개페이지</div>;
+/*
+const About = () => {
+return (
+  <div>소개페이지</div>
   )
 }
-
-
+*/
+const App = () => {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">소개</Link>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <Routes>
+          <Route path='/' element={<Blog />} />
+          <Route path='/about' element={<About/>} />
+        </Routes>
+      </div>
+    </Router>
+  )
+}
 export default App;
-
-
